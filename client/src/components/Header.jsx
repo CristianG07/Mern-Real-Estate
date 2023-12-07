@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+      <div className="flex justify-between items-center max-w-6xl gap-2 mx-auto p-3">
         <Link to="/">
-          <h1 className="font-bold text-sm sm:text-3xl flex flex-wrap">
+          <h1 className="font-bold text-2xl sm:text-2xl flex">
             <span className="text-slate-500">Start</span>
             <span className="text-slate-700">Estate</span>
           </h1>
@@ -18,7 +20,7 @@ export const Header = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
+            className="bg-transparent focus:outline-none block h-4"
             // value={searchTerm}
             // onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -26,29 +28,31 @@ export const Header = () => {
             <FaSearch className="text-slate-600" />
           </button>
         </form>
-        <ul className="flex gap-4">
-          <Link to="/">
-            <li className="link">
-              Home
-            </li>
-          </Link>
-          <Link to="/about">
-            <li className="link">
-              About
-            </li>
-          </Link>
-          {/* <Link to="/profile">
+        <nav className="flex gap-6">
+          <ul className="sm:flex gap-4 hidden">
+            <Link to="/">
+              <li className="link">Home</li>
+            </Link>
+            <Link to="/about">
+              <li className="link">About</li>
+            </Link>
+          </ul>
+          <div className="w-full">
             {currentUser ? (
-              <img
-                className="rounded-full h-7 w-7 object-cover"
-                // src={currentUser.avatar}
-                alt="profile"
-              />
+              <Link to="/profile">
+                <img
+                  className="rounded-full w-7"
+                  src={currentUser.avatar}
+                  alt="profile"
+                />
+              </Link>
             ) : (
-              <li className=" text-slate-700 hover:underline"> Sign in</li>
+              <Link to="/sign-in">
+                <span className="link"> Sign in</span>
+              </Link>
             )}
-          </Link> */}
-        </ul>
+          </div>
+        </nav>
       </div>
     </header>
   );

@@ -8,7 +8,7 @@ body{
 
 @layer components {
   .link {
-    @apply hidden sm:inline text-xl text-slate-700 hover:underline
+    @apply text-xl text-slate-700 hover:underline
   }
   .btn_auth {
     @apply text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80 uppercase
